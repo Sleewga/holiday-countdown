@@ -10,7 +10,9 @@ let countdownInterval = null;
 await startHolidayDaemon();
 
 radioButtons.addEventListener("click", () => {
-  startHolidayDaemon();
+  if (event.target.name == "country"){
+    startHolidayDaemon();
+  }
 });
 
 async function startHolidayDaemon() {
