@@ -1,5 +1,5 @@
-import {UiController} from "./ui.js";
-import {HolidayTimeService} from "./api.js";
+import { UiController } from "./ui.js";
+import { HolidayTimeService } from "./api.js";
 
 const holidayTimeService = new HolidayTimeService();
 const uiController = new UiController();
@@ -9,28 +9,28 @@ let countdownInterval = null;
 
 await startHolidayDaemon();
 
-radioButtons.addEventListener("click",() => {
-  startHolidayDaemon(); 
+radioButtons.addEventListener("click", () => {
+  startHolidayDaemon();
 });
 
-async function startHolidayDaemon(){
-
+async function startHolidayDaemon() {
   uiController.showLoading();
-
 
   let countryCode = getChosenCountryCode();
   const nextHoliday = await holidayTimeService.getNextHoliday(countryCode);
 
   uiController.showNextHolidayDate(nextHoliday.date);
   uiController.showNextHolidayName(nextHoliday.name);
-        clearInterval(countdownInterval);
+  clearInterval(countdownInterval);
 
   countdownInterval = setInterval(() => {
     uiController.updateCountdown(nextHoliday.date);
   }, 1000);
 }
 
-function getChosenCountryCode(){
-  const chosenCountry = document.querySelector('input[name="country"]:checked').id;
+function getChosenCountryCode() {
+  const chosenCountry = document.querySelector(
+    'input[name="country"]:checked',
+  ).id;
   return chosenCountry;
 }
