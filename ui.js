@@ -17,7 +17,7 @@ export class UiController {
 
   showNextHolidayDate(holidayDate) {
     const dayOfMonth = holidayDate.getDate();
-    const month = holidayDate.getMonth();
+    const month = holidayDate.getMonth() + 1;
     const year = holidayDate.getFullYear();
 
     this.#holidayDate.innerText = `[${dayOfMonth}.${month}.${year}]`;
