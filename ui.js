@@ -22,7 +22,7 @@ showNextHolidayDate(holidayDate){
   const month = holidayDate.getMonth();
   const year = holidayDate.getFullYear();
 
-  this.#holidayDate.innerText = `${dayOfMonth}-${month}-${year}`;
+  this.#holidayDate.innerText = `[${dayOfMonth}.${month}.${year}]`;
 }
 
 showNextHolidayName(holidayName){

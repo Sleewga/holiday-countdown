@@ -12,11 +12,20 @@
         <div id="countdown"></div>
         <div id="holiday-date"></div>
         <div id="holiday-name"></div>
-        <form class="country-choice">
-          <input type="radio" name="country" id="cz" />
-          <input type="radio" name="country" id="eng" />
-          <input type="radio" name="country" id="de" />
-        </form>
+<form class="country-choice" id="country-choice">
+  <label class="radio-button">
+    <input type="radio" name="country" id="cz" />
+    <span class="radio-icon">🇨🇿</span>
+  </label>
+  <label class="radio-button">
+    <input type="radio" name="country" id="us" />
+    <span class="radio-icon">🇺🇸</span>
+  </label>
+  <label class="radio-button">
+    <input type="radio" name="country" id="de" />
+    <span class="radio-icon">🇩🇪</span>
+  </label>
+</form>
       </section>
     </main>
     <script src="main.js" type="module"></script>

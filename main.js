@@ -9,7 +9,9 @@ await startHolidayDaemon();
 async function startHolidayDaemon(){
   uiController.showLoading();
 
-  const nextHoliday = await holidayTimeService.getNextHoliday("CZ");
+  let countryCode = getChosenCountryCode();
+  console.log(countryCode);
+  const nextHoliday = await holidayTimeService.getNextHoliday(countryCode);
 
   uiController.showNextHolidayDate(nextHoliday.date);
   uiController.showNextHolidayName(nextHoliday.name);
@@ -17,4 +19,9 @@ async function startHolidayDaemon(){
   setInterval(() => {
     uiController.updateCountdown(nextHoliday.date);
   }, 1);
+}
+
+function getChosenCountryCode(){
+  const chosenCountry = document.querySelector('input[name="country"]:checked').id;
+  return chosenCountry;
 }
