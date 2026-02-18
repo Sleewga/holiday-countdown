@@ -3,22 +3,31 @@ import {HolidayTimeService} from "./api.js";
 
 const holidayTimeService = new HolidayTimeService();
 const uiController = new UiController();
+const radioButtons = document.getElementById("country-choice");
+
+let countdownInterval = null;
 
 await startHolidayDaemon();
 
+radioButtons.addEventListener("click",() => {
+  startHolidayDaemon(); 
+});
+
 async function startHolidayDaemon(){
+
   uiController.showLoading();
 
+
   let countryCode = getChosenCountryCode();
-  console.log(countryCode);
   const nextHoliday = await holidayTimeService.getNextHoliday(countryCode);
 
   uiController.showNextHolidayDate(nextHoliday.date);
   uiController.showNextHolidayName(nextHoliday.name);
+        clearInterval(countdownInterval);
 
-  setInterval(() => {
+  countdownInterval = setInterval(() => {
     uiController.updateCountdown(nextHoliday.date);
-  }, 1);
+  }, 1000);
 }
 
 function getChosenCountryCode(){
